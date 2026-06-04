@@ -1,0 +1,26 @@
+[package]
+name = "matchmaker"
+version = "0.1.0"
+edition = "2021"
+description = "High-performance, thread-safe 5v5 real-time competitive matchmaking engine (std-only, zero dependencies)."
+
+# Library: the reusable engine.
+[lib]
+name = "matchmaker"
+path = "src/lib.rs"
+
+# Demo service: boots the engine and runs a representative workload.
+[[bin]]
+name = "matchmaker"
+path = "src/main.rs"
+
+# Load generator: injects thousands of concurrent player requests.
+[[bin]]
+name = "simulate"
+path = "src/bin/simulate.rs"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"

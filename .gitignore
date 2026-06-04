@@ -1,0 +1,9 @@
+/target
+**/*.rs.bk
+Cargo.lock
+
+# macOS
+.DS_Store
+
+# local-only docs / study pack (not part of the deliverable)
+docs/
