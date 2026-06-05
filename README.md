@@ -25,10 +25,6 @@ cargo run --release --bin simulate -- 1000000 16 8
 
 ### 1. The core algorithm: latency vs. match quality
 
-This is the central tension. Wait longer and you can assemble a tighter, fairer
-lobby; ship something now and it's looser. I turned that into an explicit per-player
-dial instead of a fixed threshold:
-
 ```
 band(wait) = min(base_window + relax_per_sec * wait, max_window)
 ```
@@ -45,7 +41,7 @@ most at risk). Two behaviours fall out of the same rule:
 
 The simulation shows the trade-off clearly. With a deep backlog (1 worker, ~90 ms
 wait) the matcher has a big candidate pool and forms very tight matches (spread around
-9). Drain the queue as fast as it fills (8 workers, ~2 ms wait) and there are fewer
+9). If we Drain the queue as fast as it fills (8 workers, ~2 ms wait) and there are fewer
 candidates near any seed, so matches come out looser (spread around 81), though still
 inside one base band. Lower latency, slightly lower quality. That's the curve I'd
 expect.
