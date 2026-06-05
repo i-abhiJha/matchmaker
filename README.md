@@ -5,6 +5,22 @@ pulls them into balanced 5v5 matches. The notes below cover how I tackled the ma
 engineering problems, the algorithmic trade-offs, the time/space complexity, and how
 I'd scale it.
 
+## How to run
+
+No external crates, just `std`, so it builds and runs offline.
+
+```bash
+# Unit + concurrency tests
+cargo test --release
+
+# Demo service: injects 50k players and prints a few sample balanced matches
+cargo run --release --bin matchmaker
+
+# Load test: inject N players with P producer threads and W matching workers
+cargo run --release --bin simulate -- 1000000 16 8
+#                                      ^players  ^producers ^workers
+```
+
 ## How I approached each problem
 
 ### 1. The core algorithm: latency vs. match quality
