@@ -1,14 +1,8 @@
-//! Load generator binary.
-//!
-//! Injects thousands (default: hundreds of thousands) of concurrent player
+//! Injects thousands of concurrent player
 //! requests into the engine to demonstrate performance under load.
 //!
 //! Usage:
 //!   cargo run --release --bin simulate -- [players] [producers] [workers]
-//!
-//! Examples:
-//!   cargo run --release --bin simulate                      # 200k players, 8 producers
-//!   cargo run --release --bin simulate -- 1000000 16 12     # 1M players, custom threads
 
 use std::thread::available_parallelism;
 
